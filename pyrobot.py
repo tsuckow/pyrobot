@@ -627,7 +627,10 @@ class Robot(object):
 		''' Releases a given key. '''
 		KEY_RELEASE = 0x0002
 
-		vk_code = self._vk_from_char(key)
+		if isinstance(key, str):
+			vk_code = self._vk_from_char(key)
+		else:
+			vk_code = key
 		self._key_control(key=vk_code, action=KEY_RELEASE)
 
 	def _key_control(self, key, action):
